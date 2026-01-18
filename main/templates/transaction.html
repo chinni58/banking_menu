@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Transactions - ProBank</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #1E3A8A, #8B5CF6, #C084FC);
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      width: 90%;
+      max-width: 1100px;
+      backdrop-filter: blur(20px);
+      background: rgba(255, 255, 255, 0.15);
+      padding: 40px;
+      border-radius: 25px;
+      box-shadow: 0 0 30px rgba(30, 41, 59, 0.4);
+    }
+
+    .section {
+      background: rgba(255,255,255,0.15);
+      border-radius: 20px;
+      padding: 25px;
+      text-align: center;
+      box-shadow: inset 0 0 15px rgba(255,255,255,0.2);
+      transition: transform 0.3s ease;
+    }
+
+    .section:hover { transform: scale(1.03); }
+
+    h2 {
+      margin-bottom: 15px;
+      font-size: 1.3rem;
+      color: #E0E7FF;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    input {
+      width: 90%;
+      padding: 10px;
+      margin: 8px 0;
+      border-radius: 10px;
+      border: none;
+      background: rgba(255,255,255,0.2);
+      color: white;
+      outline: none;
+    }
+
+    input::placeholder { color: #E0E7FF; }
+
+    button {
+      width: 92%;
+      padding: 10px;
+      background: linear-gradient(135deg, #1E3A8A, #3B82F6);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-weight: 600;
+      margin-top: 10px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background: linear-gradient(135deg, #3B82F6, #2563EB);
+    }
+
+    .back {
+      margin-top: 25px;
+      text-align: center;
+      font-size: 0.9rem;
+      color: #E0E7FF;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="section">
+      <h2>💰 Deposit</h2>
+      <form method="POST">{% csrf_token %}
+        <input type="text" name="username" placeholder="Username" required>
+        <input type="number" name="amount" placeholder="Amount" required>
+        <button type="submit" name="deposit">Deposit</button>
+      </form>
+    </div>
+
+    <div class="section">
+      <h2>💸 Withdraw</h2>
+      <form method="POST">{% csrf_token %}
+        <input type="text" name="username" placeholder="Username" required>
+        <input type="number" name="amount" placeholder="Amount" required>
+        <button type="submit" name="withdraw">Withdraw</button>
+      </form>
+    </div>
+
+    <div class="section">
+      <h2>📊 Check Balance</h2>
+      <form method="POST">{% csrf_token %}
+        <input type="text" name="username" placeholder="Username" required>
+        <button type="submit" name="check">Check Balance</button>
+      </form>
+    </div>
+
+    <div class="section">
+      <h2>🔁 Transfer</h2>
+      <form method="POST">{% csrf_token %}
+        <input type="text" name="sender" placeholder="Sender Username" required>
+        <input type="text" name="receiver" placeholder="Receiver Username" required>
+        <input type="number" name="amount" placeholder="Amount" required>
+        <button type="submit" name="transfer">Transfer</button>
+      </form>
+    </div>
+  </div>
+  <div class="back" onclick="location.href='/'">← Back to Home</div>
+</body>
+</html>
